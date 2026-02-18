@@ -1,6 +1,10 @@
 .venv/
 .vscode/
 
+lab1ImageClassification.zip
+lab1ImageClassification/train.zip
+lab1ImageClassification/test_images.zip
+
 __pycache__/
 
 logs/
