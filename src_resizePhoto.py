@@ -40,6 +40,6 @@ def resize_my_photos(input_folder, output_folder, size=(400, 400)):
 # --- ИСПОЛЬЗОВАНИЕ ---
 # Укажи путь к своим новым фото из магазина
 resize_my_photos(
-    input_folder='ph_phone', 
-    output_folder='ph_phone_resize'
+    input_folder='Киви', 
+    output_folder='kiv'
 )
