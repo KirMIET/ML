@@ -5,6 +5,8 @@ lab1ImageClassification.zip
 lab1ImageClassification/train.zip
 lab1ImageClassification/test_images.zip
 lab1ImageClassification/my_submission
+lab1ImageClassification/train
+lab1ImageClassification/test_images
 
 __pycache__/
 
