@@ -26,7 +26,7 @@ In the first approach, a high-performance ensemble was built consisting of **25 
 
 ### Approach 2: Single Strong EfficientNetV2 Model (6-Fold)
 
-In the second approach, a single powerful model — **`tf_efficientnetv2_s`** (pretrained on ImageNet-21k and fine-tuned on ImageNet-1k) — was trained using **6-fold cross-validation**.
+In the second approach, a single powerful model — **`tf_efficientnetv2_s.in21k_ft_in1k`** (pretrained on ImageNet-21k and fine-tuned on ImageNet-1k) — was trained using **6-fold cross-validation**.
 
 **Key features:**
 
