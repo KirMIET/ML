@@ -1,0 +1,48 @@
+filepath,true_label,true_class,pred_label,pred_class,max_prob,correct
+train/train\Яблоки зелёные\48188\67c62fda657945f787148316de4beb38.jpg,13,Яблоки зелёные,1,Бананы,0.9818,False
+train/train\Мандарины\47642\091464b2d8a84b2ea4b025bb54a8f454.jpg,9,Мандарины,0,Апельсин,0.9817,False
+train/train\Апельсин\60526\fe49a034452d412c9a93fddf29718f19.jpg,0,Апельсин,9,Мандарины,0.9806,False
+train/train\Апельсин\60526\5c4b658b8799460db4b2076eaea5ef2d.jpg,0,Апельсин,9,Мандарины,0.975,False
+train/train\Яблоки зелёные\48188\d2050e5b8f464c1ca2d316c117efef52.jpg,13,Яблоки зелёные,14,Яблоки красные,0.9739,False
+train/train\Морковь\2138999\4ada3e16f5c74237bf6aff006fa663a3.jpg,10,Морковь,8,Лук,0.9739,False
+train/train\Апельсин\60526\4a040b207ac24a1785428402f461858f.jpg,0,Апельсин,9,Мандарины,0.9739,False
+train/train\Апельсин\60526\0c81acafd97f4de3944dbdcecec05a1a.jpg,0,Апельсин,9,Мандарины,0.9725,False
+train/train\Лук\197\8643867638404f23bd2b17ba8af94612.jpg,8,Лук,10,Морковь,0.972,False
+train/train\Груши\50911\902665f036a64fb2ba5fdc69e3e853bc.jpg,2,Груши,8,Лук,0.9579,False
+train/train\Картофель\3953590\e31c5961f641452c91b889410d6ef9a3.jpg,5,Картофель,8,Лук,0.9468,False
+train/train\Апельсин\60619\9eabb9f7130e4f8ba800950850303c64.jpg,0,Апельсин,9,Мандарины,0.9445,False
+train/train\Яблоки красные\4271772\6e31f30ec00a4f9da62368a65b417f7c.jpg,14,Яблоки красные,10,Морковь,0.9341,False
+train/train\Яблоки красные\4271772\151509d29e6645efba38fdaee18999f5.jpg,14,Яблоки красные,8,Лук,0.9311,False
+train/train\Томаты\4221768\c51af18ec1eb4bbf81354659e5814f28.jpg,12,Томаты,14,Яблоки красные,0.9232,False
+train/train\Яблоки красные\807\dd9e7ce4ee404eb1be716a4c42b62391.jpg,14,Яблоки красные,5,Картофель,0.9214,False
+train/train\Лук\197\615d6ed5f7ce481da564d7bacf00ea4f.jpg,8,Лук,5,Картофель,0.9176,False
+train/train\Мандарины\47642\060889def10b47adbef11243712ab0da.jpg,9,Мандарины,12,Томаты,0.9134,False
+train/train\Картофель\3953590\47a42f9866df4488b1966d8b6657f8dc.jpg,5,Картофель,8,Лук,0.9082,False
+train/train\Киви\78647\2e17ec8eca5044369ab41ec249e40e7d.jpg,6,Киви,5,Картофель,0.9014,False
+train/train\Бананы\809\fe5fd97af9bd48dba6d366604f9231e3.jpg,1,Бананы,3,Кабачки,0.88,False
+train/train\Яблоки красные\807\decdf6b3b88942f6a0de7189a8dae657.jpg,14,Яблоки красные,5,Картофель,0.8675,False
+train/train\Мандарины\47642\8f0629d36fc043cb87f108ec0ca82ae8.jpg,9,Мандарины,0,Апельсин,0.8532,False
+train/train\Томаты\4221768\40d9ce0f913a4b3abbd749ceac9508da.jpg,12,Томаты,14,Яблоки красные,0.853,False
+train/train\Апельсин\60526\ba7e803ace964e9b99634cf9ee1c9a78.jpg,0,Апельсин,9,Мандарины,0.8091,False
+train/train\Груши\50911\ea5c2acd20394155b5e86d6cad66cc9f.jpg,2,Груши,13,Яблоки зелёные,0.7996,False
+train/train\Томаты\202\dfab57d57d904ce0b8b46fb296846412.jpg,12,Томаты,14,Яблоки красные,0.7897,False
+train/train\Киви\78647\763370de6f3c42b7a156d5494454dbce.jpg,6,Киви,5,Картофель,0.7761,False
+train/train\Мандарины\47642\6cc06c7be84b4b76877f10e5cb1658d5.jpg,9,Мандарины,8,Лук,0.7669,False
+train/train\Томаты\4221768\1e3b2e6dd4294841a7365ee6a91d8e35.jpg,12,Томаты,8,Лук,0.7651,False
+train/train\Киви\78647\a193690086ce4d17a1b775b13f3af213.jpg,6,Киви,8,Лук,0.6883,False
+train/train\Картофель\3953590\81c793c2b3dd49688923ec1d874df5a6.jpg,5,Картофель,8,Лук,0.648,False
+train/train\Томаты\202\950d8cf3170a441bb03d84a114dc3d2c.jpg,12,Томаты,14,Яблоки красные,0.6433,False
+train/train\Яблоки красные\48637\1d7cb39ed3e340f98ddcd8c7804bf553.jpg,14,Яблоки красные,8,Лук,0.635,False
+train/train\Томаты\202\5eb4966c971f4fc0b5d03856c076bde3.jpg,12,Томаты,14,Яблоки красные,0.6326,False
+train/train\Яблоки красные\807\c70dec9397284ab6b92557a8936b89d6.jpg,14,Яблоки красные,12,Томаты,0.5752,False
+train/train\Мандарины\47642\f384993ab4ff42dc8edd4b1ff571f183.jpg,9,Мандарины,8,Лук,0.5375,False
+train/train\Томаты\4221768\253a8828a20a4963bd904c555dda32e6.jpg,12,Томаты,14,Яблоки красные,0.5321,False
+train/train\Яблоки зелёные\48188\56a71004b03140c09af094ba1f5e1e83.jpg,13,Яблоки зелёные,14,Яблоки красные,0.518,False
+train/train\Томаты\4221768\1e5ca49d3ea3418085dd498d0a76781d.jpg,12,Томаты,14,Яблоки красные,0.512,False
+train/train\Бананы\809\5cf9a1d1a8e9462d9effc5918318a2a4.jpg,1,Бананы,3,Кабачки,0.4989,False
+train/train\Огурцы\4314547\01ca7b0c233b4a42a956f9af204a5106.jpg,11,Огурцы,13,Яблоки зелёные,0.4826,False
+train/train\Яблоки зелёные\48188\005d0d504f9341b88b8e6087963f6c05.jpg,13,Яблоки зелёные,7,Лимон,0.4735,False
+train/train\Киви\78647\c9a62599e7e5455e81c61384f8626b62.jpg,6,Киви,8,Лук,0.4661,False
+train/train\Томаты\202\db5fc020a9cd4e869d6c17377e75da06.jpg,12,Томаты,9,Мандарины,0.4617,False
+train/train\Яблоки красные\609\9fe0d47904a641ff997983fc309a7bc5.jpg,14,Яблоки красные,12,Томаты,0.4247,False
+train/train\Груши\50911\49fc3c38a2374687a0b966887ba1ed7b.jpg,2,Груши,11,Огурцы,0.4196,False
