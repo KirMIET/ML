@@ -1,105 +1,31 @@
-# ML
-# Ruslan here
-# Ksusha is trying
+## Model Development
+
+The final model was developed using **two parallel approaches**.
+
+### Approach 1: Powerful Ensemble with Advanced Techniques
+
+In the first approach, a high-performance ensemble was built consisting of **25 neural networks** (5 architectures × 5 folds).
+
+**Key techniques used:**
+
+- **Model architectures** (via `timm` library):
+  - `regnety_040`
+  - `maxvit_tiny_tf_224`
+  - `swin_tiny_patch4_window7_224`
+  - `deit3_small_patch16_224`
+  - `tf_efficientnetv2_s`
+
+- **5-Fold Stratified Cross-Validation** with subclass-aware splitting
+- **Heavy augmentations** (Albumentations): ShiftScaleRotate, RandomRotate90, Horizontal & Vertical Flip, GaussianBlur, GaussNoise, CoarseDropout
+- **MixUp + Label Smoothing**
+- **Custom loss**: `SoftFocalLoss` (γ=2.0) with class weights
+- **Optimizer**: AdamW with Cosine Annealing LR scheduler
+- **Regularization**: DropPath, Gradient Clipping, Automatic Mixed Precision (AMP)
+- **Test-Time Augmentation** (4 variants: original + hflip + vflip + hvflip)
+- **Ensemble aggregation** using **Power Weighting** (p=4.0) based on per-fold F1-score
+
+### Approach 2: [To be described]
 
 ---
 
-# 📖 Инструкция по работе с Git в команде
-
-### 1. Подготовка перед началом работы
-
-
-```bash
-# Переключаемся на основную ветку 
-git checkout master
-
-# Скачиваем последние обновления из облака
-git pull origin master
-```
-
----
-
-### 2. Создание новой ветки для задачи 
-Никогда не делайте изменения сразу в ветке `master`. Для каждой новой задачи (например: "обучение модели", "очистка данных") создавайте отдельную ветку.
-
-```bash
-# Создаем новую ветку и сразу переключаемся на нее
-# Называйте ветки понятно: feature/model-training, fix/data-bug
-git checkout -b название-вашей-ветки
-```
-
----
-
-### 3. Переключение между ветками
-Если вам нужно временно переключиться на другую ветку (например, проверить код коллеги):
-
-```bash
-# Посмотреть список всех веток
-git branch
-
-# Перейти на нужную ветку
-git checkout название-ветки
-```
-*Важно: Перед переключением убедитесь, что вы сохранили (commit) свои изменения, иначе Git может не дать переключиться.*
-
----
-
-### 4. Сохранение и отправка изменений
-Когда вы написали код или изменили ноутбук, нужно зафиксировать результат.
-
-**Шаг 1: Проверить, что изменилось**
-```bash
-git status
-```
-
-**Шаг 2: Добавить файлы в очередь на сохранение**
-```bash
-git add .
-# или git add название_файла.ipynb
-```
-
-**Шаг 3: Сделать коммит (сохранить локально)**
-```bash
-git commit -m "Краткое описание того, что сделано (например: добавил аугментацию данных)"
-```
-
-**Шаг 4: Отправить ветку на GitHub**
-```bash
-# При первом пуше новой ветки используйте:
-git push -u origin название-вашей-ветки
-# Далее просто 
-git push
-```
-
----
-
-### 5. Слияние (Merge) с основной веткой
-Когда задача в вашей ветке готова и вы обсудили это с коллегой, пора вливать код в `master`.
-
-#### Вариант А: Через GitHub (Рекомендуется — "Pull Request")
-1. Зайдите на страницу репозитория на GitHub.
-2. Вы увидите желтую плашку **"Compare & pull request"**. Нажмите на неё.
-3. Опишите, что вы сделали, и нажмите **"Create pull request"**.
-4. Коллега посмотрит код и нажмет **"Merge pull request"**.
-   *Это лучший способ, так как вы можете обсудить код перед слиянием.*
-
-#### Вариант Б: Вручную в терминале
-Если решили слить ветки самостоятельно:
-```bash
-# 1. Переходим в main
-git checkout main
-
-# 2. Подтягиваем свежие изменения из облака (вдруг коллега что-то влил)
-git pull origin main
-
-# 3. Вливаем вашу ветку в текущую (в main)
-git merge название-вашей-ветки
-
-# 4. Отправляем обновленный main на GitHub
-git push origin main
-
-# 5. (Опционально) Удаляем ветку-фичу, она больше не нужна
-git branch -d название-вашей-ветки
-```
-
----
+*Details about the second approach will be added later.*

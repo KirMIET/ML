@@ -6,7 +6,7 @@ __pycache__/
 logs/
 kirillLogs/
 checkpoints/
-configent_errors/
+confident_errors/
 train/
 trainMoreData/
 test_images/
