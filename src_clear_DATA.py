@@ -1,3 +1,7 @@
+"""
+Скрипт для поиска фотографий, которые не смогла угадать модель.
+"""
+
 import os
 import cv2
 import numpy as np
@@ -11,23 +15,21 @@ from tqdm import tqdm
 import torch.nn.functional as F
 
 # --- КОНФИГУРАЦИЯ ---
-DATASET_PATH = 'lab1ImageClassification/train/train'  # Путь к твоим данным
-CHECKPOINT_PATH = 'lab1ImageClassification/checkpoints/resnet50_1.pth' # Твои веса
-OUTPUT_DIR = 'suspicious_images'       # Куда сохранять подозрительные фото
+MODEL_NAME = 'resnet50_1.pth' 
+DATASET_PATH = 'lab1ImageClassification/train/train'  # Путь к данным
+CHECKPOINT_PATH = 'lab1ImageClassification/checkpoints/' + MODEL_NAME # Путь где лежит модель
+OUTPUT_DIR = 'suspicious_images'       # Куда сохранять неугаданные фото
 
-IMG_SIZE = 300  # Важно: тот же размер, на котором учили
+IMG_SIZE = 300  # Размер фото на которых учились
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Твой словарь классов (убедись, что он совпадает с тем, на котором учили!)
 class_to_idx = { 
     "Апельсин": 0, "Бананы": 1, "Груши": 2, "Кабачки": 3, "Капуста": 4,
     "Картофель": 5, "Киви": 6, "Лимон": 7, "Лук": 8, "Мандарины": 9,
     "Морковь": 10, "Огурцы": 11, "Томаты": 12, "Яблоки зеленые": 13, "Яблоки красные": 14 
 }
-# Обратный словарь для названий
 idx_to_class = {v: k for k, v in class_to_idx.items()}
 
-# ТРАНСФОРМАЦИИ 
 val_transforms = A.Compose([
     A.LongestMaxSize(max_size=IMG_SIZE),
     A.PadIfNeeded(
@@ -42,12 +44,11 @@ val_transforms = A.Compose([
 ])
 
 def find_noisy_labels():
-    # 1. Создаем папку для мусора
     if os.path.exists(OUTPUT_DIR):
         shutil.rmtree(OUTPUT_DIR)
     os.makedirs(OUTPUT_DIR)
 
-    # 2. Загружаем модель
+    # Загружаем модель
     print(f"Загрузка модели из {CHECKPOINT_PATH}...")
     model = timm.create_model('resnet50', pretrained=False, num_classes=15)
     
@@ -59,8 +60,7 @@ def find_noisy_labels():
 
     print("Начинаем поиск ошибок в разметке...")
     
-    # 3. Сбор всех файлов
-    # (Используем логику, аналогичную твоей collect_subclass_data, но упрощенно)
+    # Сбор всех файлов
     all_images = []
     
     for class_name in os.listdir(DATASET_PATH):
@@ -73,8 +73,7 @@ def find_noisy_labels():
             sub_path = os.path.join(class_path, subclass)
             if not os.path.isdir(sub_path): continue
             
-            # Собираем картинки
-            imgs = glob(os.path.join(sub_path, '*.*')) # jpg, png, jpeg
+            imgs = glob(os.path.join(sub_path, '*.*')) 
             for img_path in imgs:
                 all_images.append({
                     'path': img_path,
@@ -86,14 +85,13 @@ def find_noisy_labels():
     
     suspicious_count = 0
     
-    # 4. Проход по данным
+    # Проход по данным
     with torch.no_grad():
         for item in tqdm(all_images):
             image_path = item['path']
             true_label = item['true_label_idx']
             true_name = item['true_label_name']
             
-            # Чтение и препроцессинг
             try:
                 image = cv2.imdecode(np.fromfile(image_path, dtype=np.uint8), cv2.IMREAD_COLOR)
                 if image is None: continue
@@ -115,16 +113,13 @@ def find_noisy_labels():
             conf = conf.item()
             pred_idx = pred_idx.item()
             
-            # --- ЛОГИКА ОТЛОВА ОШИБОК ---
+            # Ищем ошибки
             if pred_idx != true_label:
                 pred_name = idx_to_class[pred_idx]
                 
-                # Сохраняем, только если уверенность выше порога (например, 50%)
-                # Чтобы не сохранять спорные случаи
                 if conf > 0.5:
                     suspicious_count += 1
                     
-                    # Структура: suspicious_images / Название_Настоящего_Класса / ...
                     save_folder = os.path.join(OUTPUT_DIR, true_name)
                     os.makedirs(save_folder, exist_ok=True)
                     
@@ -138,5 +133,4 @@ def find_noisy_labels():
     print(f"\nГотово! Найдено {suspicious_count} подозрительных изображений.")
     print(f"Проверь папку: {OUTPUT_DIR}")
 
-# Запуск
 find_noisy_labels()

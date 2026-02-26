@@ -1,3 +1,7 @@
+"""
+Скрипт для подсчета статистики датасета
+"""
+
 import numpy as np
 import os
 from glob import glob
@@ -8,8 +12,6 @@ def get_dataset_stats(dataset_path):
     print("Подсчет статистики текущего датасета...")
     effective_sides = []
 
-    # Рекурсивный поиск всех картинок
-    # Используем PIL, так как нам нужны только размеры (это быстро)
     files = glob(os.path.join(dataset_path, "**", "*.*"), recursive=True)
     images = [f for f in files if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
 
@@ -17,7 +19,6 @@ def get_dataset_stats(dataset_path):
         try:
             with Image.open(img_path) as img:
                 w, h = img.size
-                # Считаем сторону квадрата, который имеет ту же площадь
                 side = np.sqrt(w * h)
                 effective_sides.append(side)
         except:

@@ -1,3 +1,8 @@
+"""
+Скрипт для измнения размера фотографий, которые сами хотим добавит в датасет, 
+по принчипу среднего и диспресии всего датасета.
+"""
+
 import cv2
 import os
 import numpy as np
@@ -6,8 +11,8 @@ from tqdm import tqdm
 
 def process_photos_natural(input_folder, output_folder, mean_size, std_size, min_side_limit=300):
     """
-    mean_size, std_size: статистика твоего датасета (например, 350 и 50)
-    min_side_limit: жесткое ограничение, чтобы сторона не стала меньше 300px (под модель)
+    mean_size, std_size: статистика  датасета 
+    min_side_limit: ограничение
     """
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -19,7 +24,6 @@ def process_photos_natural(input_folder, output_folder, mean_size, std_size, min
     print(f"Найдено {len(image_paths)} фото. Обработка...")
 
     for path in tqdm(image_paths):
-        # 1. Читаем исходное фото
         try:
             img = cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_COLOR)
         except Exception:
@@ -29,16 +33,9 @@ def process_photos_natural(input_folder, output_folder, mean_size, std_size, min
 
         orig_h, orig_w = img.shape[:2]
         
-        # --- ЭТАП 1: СЛУЧАЙНЫЙ КРОП (Вырезаем кусок) ---
-        
-        # Сколько площади оригинала мы хотим оставить? (от 60% до 100%)
-        # Это симулирует разное расстояние до объекта (зум)
         area_scale = np.random.uniform(0.6, 1.0)
         target_area = (orig_h * orig_w) * area_scale
-        
-        # Какое соотношение сторон мы хотим? (от 3:4 до 4:3)
-        # Это делает фото не квадратными. 
-        # log_uniform распределение, чтобы 0.75 и 1.33 были равновероятны
+
         aspect_ratio = np.exp(np.random.uniform(np.log(0.75), np.log(1.33)))
         
         # Вычисляем размеры кропа
@@ -56,10 +53,6 @@ def process_photos_natural(input_folder, output_folder, mean_size, std_size, min
         # Вырезаем!
         crop_img = img[y:y+crop_h, x:x+crop_w]
         
-        # --- ЭТАП 2: СЖАТИЕ ДО НУЖНОГО РАЗМЕРА (Ресайз) ---
-        
-        # Генерируем "целевой размер" (эффективную сторону) на основе статистики датасета
-        # Например, датасет в среднем 350px. Генерируем число ~ N(350, 50)
         target_effective_side = np.random.normal(mean_size, std_size)
         
         # Жесткое ограничение снизу: нам не нужны фото меньше 300px для EfficientNetV2
